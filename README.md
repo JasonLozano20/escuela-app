@@ -50,30 +50,18 @@ cd escuela-app/backend
 npm install
 ```
 
-3. Configura las variables de entorno:
-```bash
-cp .env.example .env
-```
-Edita `.env` con tus credenciales reales.
-
-4. Ejecuta las migraciones de Prisma:
+3. Ejecuta las migraciones de Prisma:
 ```bash
 npx prisma migrate dev
 ```
 
-5. Inicia el servidor:
+4. Inicia el servidor:
 ```bash
 npm run dev
 ```
 
 El servidor estará corriendo en `http://localhost:5000`
 
-## Base de Datos
-
-### Crear la base de datos
-```sql
-CREATE DATABASE escuelaapp CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-```
 
 ### Modelos principales
 - **Usuario**: Almacena información de administradores y maestros
@@ -90,14 +78,5 @@ El sistema usa JWT (JSON Web Tokens) para la autenticación. Los tokens tienen u
 - `POST /api/auth/register` - Registrar usuario
 - `POST /api/auth/login` - Iniciar sesión
 
-#### Admin (requiere autenticación y rol administrador)
-- `GET /api/admin/dashboard` - Dashboard del administrador
 
-## Contribuir
-
-1. Haz un Fork del proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/NuevaCaracteristica`)
-3. Commit tus cambios (`git commit -m 'Agregar nueva característica'`)
-4. Push a la rama (`git push origin feature/NuevaCaracteristica`)
-5. Abre un Pull Request
 

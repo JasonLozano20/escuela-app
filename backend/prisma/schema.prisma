@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id                   Int                    @id @default(autoincrement())
+  email                String                 @unique(map: "email") @db.VarChar(250)
+  password             String                 @db.VarChar(255)
+  nombre               String                 @db.VarChar(255)
+  rol                  Rol                    @default(maestro)
+  fecha_registro       DateTime?              @default(now()) @db.DateTime(0)
+  activo               Boolean?               @default(true)
+  documentos           Documento[]
+  documentos_asignados DocumentoAsignado[]
+  
+  @@map("usuarios")
+}
+
+model Documento {
+  id              Int                 @id @default(autoincrement())
+  titulo          String              @db.VarChar(255)
+  descripcion     String?             @db.Text
+  nombre_archivo  String              @db.VarChar(255)
+  ruta_s3         String              @db.VarChar(500)
+  tipo_archivo    String?             @db.VarChar(50)
+  tamano_bytes    BigInt?
+  usuario_id      Int?
+  fecha_subida    DateTime?           @default(now()) @db.DateTime(0)
+  
+  usuarios             Usuario?           @relation(fields: [usuario_id], references: [id], map: "documentos_ibfk_1")
+  documentos_asignados DocumentoAsignado[]
+  
+  @@map("documentos")
+}
+
+model DocumentoAsignado {
+  id              Int       @id @default(autoincrement())
+  documento_id    Int
+  usuario_id      Int
+  fecha_asignacion DateTime? @default(now()) @db.DateTime(0)
+  fecha_visto     DateTime? @db.DateTime(0)
+  
+  documentos Documento @relation(fields: [documento_id], references: [id], map: "documentos_asignados_ibfk_1")
+  usuarios   Usuario   @relation(fields: [usuario_id], references: [id], map: "documentos_asignados_ibfk_2")
+  
+  @@unique([documento_id, usuario_id])
+  @@map("documentos_asignados")
+}
+
+enum Rol {
+  administrador
+  maestro 
+}

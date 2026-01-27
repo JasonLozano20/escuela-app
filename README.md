@@ -40,8 +40,10 @@ Sistema para digitalizar el proceso de entrega y firma de documentos entre admin
 ### Backend
 
 1. Clona el repositorio:
+   Debes crear un fork del repositorio para poder realizar cambios en tu copia local.
+   Nota: El nombre de tu usuario debe ser tu cuenta de GitHub.
 ```bash
-git clone https://github.com/jasonlozano20/escuela-app.git
+git clone https://github.com/tu-usuario/escuela-app.git
 cd escuela-app/backend
 ```
 

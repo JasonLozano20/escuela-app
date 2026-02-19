@@ -1,13 +1,7 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import prisma from '../utils/database';
-import { 
-  Usuario, 
-  UsuarioResponse, 
-  RegisterRequest, 
-  LoginRequest,
-  Rol 
-} from '../types';
+import { Usuario, UsuarioResponse, RegisterRequest, LoginRequest, Rol } from '../types';
 
 export class AuthService {
   

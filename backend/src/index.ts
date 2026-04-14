@@ -5,6 +5,7 @@ import cors from 'cors';
 import authRoutes from './routes/auth.routes';
 import adminRoutes from './routes/admin.routes';
 import documentoRoutes from './routes/documento.routes';
+import usuarioRoutes from './routes/usuario.routes';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/documentos', documentoRoutes)
+app.use('/api/usuarios', usuarioRoutes);
 
 app.get('/api/health', (req, res) => {
     res.json({
